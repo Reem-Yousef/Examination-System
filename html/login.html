@@ -24,22 +24,22 @@
 
         <form id="form">
             <div class="input-form">
-                <label for="email">E-mail</label>
-                <input type="text" id="email" placeholder="Enter E-mail" />
-                <div id="error-email" class="error"></div>
-                 
-              </div>
+    <label for="username">Username</label>
+    <input type="text" id="username" list="usernameOptions" placeholder="Enter your username" autocomplete="username">
+    <div id="error-username" class="error"></div>
+</div>
 
 
           <div class="input-form">
             <label for="password">Password</label>
             <div class="passcontainer">
-              <input
+              <!-- <input
                 type="password"
                 name="password"
                 id="password"
                 placeholder="Enter Password"
-              />
+              /> -->
+              <input type="password" id="password" name="password" autocomplete="current-password">
               <img
                 src="../two-eyelashes.png"
                 id="toggle-password"
@@ -48,6 +48,10 @@
             </div>
             <div class="error" id="error-password"></div>
           </div>
+          <div class="remember-me">
+            <input type="checkbox" id="remember-me" name="remember-me">
+            <label for="remember-me">Remember me</label>
+        </div>
 
           <div class="regbtn">
             <button type="submit">Log In</button>

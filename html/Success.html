@@ -30,14 +30,19 @@
             </div>
             <h1 class="result-title">Misson Completed!</h1>
             <!-- <p class="result-message"></p> -->
-             <div class="true-answers">
-                <p>You Answered:</p>
-                <p>4 / 5</p>
-             </div>
-            <div class="score">Your Score: <span>85</span>%</div>
+            <div class="true-answers">
+                <p>Correct Answers:</p>
+                <span id="correct"></span>/<span id="total"></span>
+            </div>
+            <div class="true-answers">
+                <p>Time Spent:</p>
+                <p id="timeSpent"></p>
+            </div>
+             <div class="score">Your Score: <span id="scorePercent"></span>%</div>
             <p class="result-message">You've demonstrated excellent knowledge of interstellar studies.</p>
             <button class="button btn-success">Download Certificate</button>
-            <button class="button btn-success" style="background: linear-gradient(45deg, var(--dark-pink), black);">Next Galaxy</button>
+            <button class="button btn-success" style="background: linear-gradient(45deg, var(--dark-pink), black);"
+            onclick="window.location.href='welcome.html';">Home Galaxy</button>
         </div>
 
     </section>

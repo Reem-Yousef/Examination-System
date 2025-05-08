@@ -35,9 +35,13 @@
             </div>
             <h1 class="result-title">TIME'S UP!</h1>
             <p class="result-title">00:00</p>
-            <div class="score">Questions Answered: <span id="answered">12</span>/<span id="total">20</span></div>
+            <div class="score">Questions Answered: <span id="answered"></span>/<span id="total"></span></div>
             <button class="button btn-timeout" onclick="showPage('failure')">View Results</button>
-            <button class="button btn-timeout" style="background: linear-gradient(45deg, var(--cosmic-blue), var(--cosmic-purple));">Retry Exam</button>
+            <button class="button btn-timeout" 
+                    style="background: linear-gradient(45deg, var(--cosmic-blue), var(--cosmic-purple));"
+                    onclick="window.location.href='Exam.html';">
+                    Retry Mission
+            </button>            
         </div>
 
     </section>
