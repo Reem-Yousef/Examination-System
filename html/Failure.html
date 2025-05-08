@@ -24,34 +24,40 @@
 
         
         <div id="failure" class="result-container failure">
-            <!-- <div class="result-icon">
-                <div class="black-hole">
-                    <div class="swirl"></div>
-                </div>
-            </div> -->
             <div class="result-icon">
                 <div class="img-container">
                     <img src="download (3).png">
                 </div>
                 <div class="black-hole">
-                  <div class="event-horizon"></div>
-                  <div class="swirl"></div>
-                  <div class="light-ring"></div>
+                    <div class="event-horizon"></div>
+                    <div class="swirl"></div>
+                    <div class="light-ring"></div>
                 </div>
-              </div>
-              
+            </div>
+            
             <h1 class="result-title">COSMIC FAILURE</h1>
-            <!-- <p class="result-message">You didn't pass this time, but don't get lost in a black hole of despair! Every attempt brings new knowledge.</p> -->
+            
             <div class="true-answers">
-                <p>You Answered:</p>
-                <p>4 / 5</p>
-             </div>
-            <div class="score">Your Score: <span>42</span>%</div>
-            <p class="result-message">Review your star charts and try again. You need 70% to pass.</p>
-            <button class="button btn-failure">Review Answers</button>
-            <button class="button btn-failure" style="background: linear-gradient(45deg, black, var(--dark-pink));">Retry Exam</button>
+                <p>Correct Answers:</p>
+                <span id="correct"></span>/<span id="total"></span>
+            </div>
+            
+            <div class="true-answers">
+                <p>Time Spent:</p>
+                <p id="timeSpent"></p>
+            </div>
+            
+            <div class="score">Your Score: <span id="scorePercent"></span>%</div>
+            
+            <p class="result-message" id="failureMessage"></p>
+            
+            <button class="button btn-failure" id="reviewBtn">Review Answers</button>
+            <button class="button btn-failure" style="background: linear-gradient(45deg, black, var(--dark-pink));" 
+                    onclick="window.location.href='Exam.html';">
+                Retry Exam
+            </button>
         </div>
-
+        
     </section>
     <script src="../js/spaceBG.js"></script>
     <script src="../js/Failure.js"></script>

@@ -164,3 +164,57 @@ h2 {
     font-size: 20px;
   }
 }
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+}
+
+input.invalid {
+    border-color: #ff4444;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.remember-me {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input {
+    margin-right: 0.5rem;
+}
+
+/* إخفاء سهم القائمة المنسدلة */
+input[list] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* رسائل الخطأ */
+.error {
+    color: #ff4444;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+}
+
+input.invalid {
+    border-color: #ff4444;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
