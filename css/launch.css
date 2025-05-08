@@ -1,0 +1,269 @@
+
+/* Rocket */
+.rocket-container {
+    position: absolute;
+    bottom: 5%;
+    width: 80px;
+    height: 200px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    animation: none;
+    transition: transform 3s ease-in-out;
+}
+
+.rocket {
+    position: relative;
+    width: 40px;
+    height: 120px;
+    z-index: 10;
+}
+
+.rocket-body {
+    position: absolute;
+    width: 40px;
+    height: 80px;
+    background: linear-gradient(to right, #a3a3a3, var(--rocket-silver), #a3a3a3);
+    border-radius: 50% 50% 30% 30%;
+}
+
+.rocket-head {
+    position: absolute;
+    top: -20px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(to right, #b85454, var(--rocket-red), #b85454);
+    border-radius: 50% 50% 30% 30%;
+}
+
+.fin {
+    position: absolute;
+    width: 15px;
+    height: 30px;
+    background: var(--rocket-silver);
+}
+
+.fin-left {
+    bottom: 0;
+    left: -15px;
+    border-radius: 0 0 0 20px;
+    transform: skewY(30deg);
+}
+
+.fin-right {
+    bottom: 0;
+    right: -15px;
+    border-radius: 0 0 20px 0;
+    transform: skewY(-30deg);
+}
+
+.window {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #7df3ff;
+    border-radius: 50%;
+    top: 25px;
+    left: 12px;
+    box-shadow: 0 0 10px #7df3ff;
+}
+
+.exhaust-flame {
+    position: absolute;
+    bottom: -25px;
+    left: 12%;
+    width: 30px;
+    height: 0;
+    background: linear-gradient(to bottom, #ff7b00, #ffac38);
+    border-radius: 0 0 20px 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+@keyframes rocketIdle {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes rocketLaunch {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-800px);
+        opacity: 0.7;
+    }
+}
+
+@keyframes flameFlicker {
+    0% {
+        height: 40px;
+        opacity: 0.7;
+    }
+    50% {
+        height: 55px;
+        opacity: 0.9;
+    }
+    100% {
+        height: 40px;
+        opacity: 0.7;
+    }
+}
+
+
+/* Countdown */
+.countdown {
+    position: absolute;
+    bottom: 5%;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 64px;
+    text-shadow: 0 0 10px var(--star-glow);
+    opacity: 0;
+    z-index: 20;
+}
+
+/* Beam */
+/* .beam {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    background: linear-gradient(to bottom, rgba(132,165,167,0.4), rgba(255,255,255,0));
+    border-radius: 50% 50% 0 0;
+    opacity: 0;
+    z-index: 5;
+    transform-origin: top;
+    transition: transform 2s ease, opacity 2s ease;
+}
+
+@keyframes beamFlicker {
+    0%, 100% { opacity: 1; filter: blur(0px); }
+    25% { opacity: 0.8; filter: blur(1px); }
+    50% { opacity: 1; filter: blur(0px); }
+    75% { opacity: 0.6; filter: blur(2px); }
+} */
+
+/* Start button */
+.start-button {
+    position: absolute;
+    padding: 15px 30px;
+    font-size: 22px;
+    background: rgba(24, 28, 36, 0.3);
+    color: white;
+    border: 2px solid var(--button-glow);
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px var(--button-glow);
+    transition: all 0.5s ease;
+    opacity: 0;
+    z-index: 15;
+    text-transform: uppercase;
+}
+
+.start-button:hover {
+    box-shadow: 0 0 25px var(--button-glow);
+    background: rgba(34, 14, 18, 0.425);
+    transform: translateY(-5px);
+}
+
+.Quiz-gide{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(.9);
+    width: 45%;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 20;
+    background: rgba(12, 12, 12, 0.123);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(151, 130, 141, 0.2);
+    border-radius: 20px;
+    padding: 30px 40px;
+    backdrop-filter: blur(10px);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    transition: opacity 1s ease, transform 1s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Quiz-gide.active{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.header{
+    width: 42%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h2{
+    color: var(--hot-pink);
+}
+
+.header img{
+    width: 50px;
+    height: 50px;
+    padding-bottom: 10px;
+    transform: rotate(20deg);
+    filter: drop-shadow(0 0 14px rgba(245, 244, 245, 0.7));
+}
+
+.info {
+    margin-top: -10px;
+    margin-left: 15px;
+}
+
+.info h4{
+    color: var(--light-pink);
+}
+
+.info h4:first-child{
+    display: inline-block;
+}
+
+.btn{
+    text-align: center;
+}
+
+.btn-info{
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, var(--bright-pink), var(--dark-pink));
+    box-shadow: 0 4px 15px var(--button-glow);
+}
+
+.btn-info:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--planet-glow);
+}
+
+.btn-info a{
+    text-decoration: none;
+    color: white;
+}

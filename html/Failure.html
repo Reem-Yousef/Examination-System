@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/spaceBG.css">
+    <link rel="stylesheet" href="../css/Result.css">
+    <link rel="stylesheet" href="../css/Failure.css">
+</head>
+<body>
+     <!-- start space bachground -->
+     <section class="scene">
+        <!-- stars -->
+        <div class="stars"></div>
+
+        <!-- Planets -->
+        <div class="planet planet-1">
+            <div class="planet-ring"></div>
+        </div>
+        <div class="planet planet-2"></div>
+
+        <!-- here continue any container i.e. signUp -->
+
+        
+        <div id="failure" class="result-container failure">
+            <!-- <div class="result-icon">
+                <div class="black-hole">
+                    <div class="swirl"></div>
+                </div>
+            </div> -->
+            <div class="result-icon">
+                <div class="img-container">
+                    <img src="download (3).png">
+                </div>
+                <div class="black-hole">
+                  <div class="event-horizon"></div>
+                  <div class="swirl"></div>
+                  <div class="light-ring"></div>
+                </div>
+              </div>
+              
+            <h1 class="result-title">COSMIC FAILURE</h1>
+            <!-- <p class="result-message">You didn't pass this time, but don't get lost in a black hole of despair! Every attempt brings new knowledge.</p> -->
+            <div class="true-answers">
+                <p>You Answered:</p>
+                <p>4 / 5</p>
+             </div>
+            <div class="score">Your Score: <span>42</span>%</div>
+            <p class="result-message">Review your star charts and try again. You need 70% to pass.</p>
+            <button class="button btn-failure">Review Answers</button>
+            <button class="button btn-failure" style="background: linear-gradient(45deg, black, var(--dark-pink));">Retry Exam</button>
+        </div>
+
+    </section>
+    <script src="../js/spaceBG.js"></script>
+    <script src="../js/Failure.js"></script>
+</body>
+</html>
