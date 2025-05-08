@@ -1,116 +1,117 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById("form");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const togglePasswordBtn = document.getElementById("toggle-password");
 
-const form = document.getElementById("form");
-
-const fields = [
-    {
-        id: "email",
-        validation: value => {
-            if (value === "") return "Email is required.";
-            if (!/^(?:[a-zA-Z0-9._-]+)@(gmail\.com|yahoo\.com)$/.test(value)) {
-                return "Please enter a valid email (e.g., user@gmail.com or user@yahoo.com).";
-            }
-            return "";
-        },
-        errorId: "error-email"
-    },
-    {
-        id: "password",
-        validation: value => value === ""
-            ? "Password is required." : /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8,}$/.test(value)
-                ? '' : "Password must be at least 8 characters long, contain both uppercase and lowercase letters, a number, and a special character",
-        errorId: "error-password"
-    },
-
-
-];
-
-
-const togglePassword = (inputId, iconId) => {
-    const input = document.getElementById(inputId);
-    const icon = document.getElementById(iconId);
-
-    icon.addEventListener('click', () => {
-        const isHidden = input.type === 'password';
-        input.type = isHidden ? 'text' : 'password';
-        icon.src = isHidden ? '../cartoon-eyes.png' : '../two-eyelashes.png';
-    });
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    togglePassword('password', 'toggle-password');
-});
-
-
-const checkUser = (email, password) => {
-    const savedData = localStorage.getItem('formData');
-    if (!savedData) return { errorField: "email", message: "Email not registered. Please sign up first." };
-
-    const userData = JSON.parse(savedData);
-
-    if (email !== userData.email) {
-        return { errorField: "email", message: "Email not found. Please check your email." };
+    // 1. دوال التحقق من الصحة
+    function validateEmail() {
+        const value = emailInput.value.trim();
+        if (value === "") {
+            return "Email is required";
+        } else if (!/^[\w.-]+@(gmail|yahoo)\.com$/.test(value)) {
+            return "Enter valid email (user@gmail/yahoo.com)";
+        }
+        return "";
     }
 
-    if (password !== userData.password) {
-        return { errorField: "password", message: "Incorrect password. Please try again." };
+    function validatePassword() {
+        const value = passwordInput.value;
+        if (value === "") {
+            return "Password is required";
+        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(value)) {
+            return "Password must contain 8+ chars, uppercase, lowercase, number & special char";
+        }
+        return "";
     }
 
-    return { success: true };
-};
+    // 2. دوال عرض/إخفاء الأخطاء
+    function showError(input, message) {
+        const errorElement = document.getElementById(`error-${input.id}`);
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    }
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let isValid = true;
+    function clearError(input) {
+        const errorElement = document.getElementById(`error-${input.id}`);
+        if (errorElement) {
+            errorElement.textContent = '';
+            errorElement.style.display = 'none';
+        }
+    }
 
-
-    fields.forEach(field => {
-        const inputElement = document.getElementById(field.id);
-        const errorMessage = field.validation(inputElement.value);
-
-        if (errorMessage) {
-            setError(errorMessage, field.errorId);
-            isValid = false;
+    // 3. التحقق أثناء الكتابة (تم التعديل هنا)
+    emailInput.addEventListener('input', () => {
+        const error = validateEmail();
+        if (error) {
+            showError(emailInput, error);
         } else {
-            setSuccess(field.errorId);
+            clearError(emailInput);
         }
     });
 
-
-    if (isValid) {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        const result = checkUser(email, password);
-
-        if (!result.success) {
-            setError(result.message, `error-${result.errorField}`);
-            isValid = false;
+    passwordInput.addEventListener('input', () => {
+        const error = validatePassword();
+        if (error) {
+            showError(passwordInput, error);
+        } else {
+            clearError(passwordInput);
         }
+    });
+
+    // 4. التحقق من بيانات المستخدم في localStorage
+    function checkUserCredentials(email, password) {
+        const savedData = localStorage.getItem('formData');
+        if (!savedData) {
+            return { isValid: false, message: "Email not registered. Please sign up first.", field: "email" };
+        }
+
+        const userData = JSON.parse(savedData);
+        if (email !== userData.email) {
+            return { isValid: false, message: "Email not found. Please check your email.", field: "email" };
+        }
+
+        if (password !== userData.password) {
+            return { isValid: false, message: "Incorrect password. Please try again.", field: "password" };
+        }
+
+        return { isValid: true };
     }
 
-    if (isValid) {
-        alert("Login successful!");
-        // توجيه المستخدم لصفحة أخرى
-        // window.location.href = "dashboard.html";
-    }
-});
+    // 5. التحقق النهائي عند الإرسال
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let isFormValid = true;
 
-function setError(message, errorId) {
-    const errorElement = document.getElementById(errorId);
-    errorElement.textContent = message;
-    errorElement.style.display = "block";
-}
+        // تحقق من صحة الإيميل
+        const emailError = validateEmail();
+        if (emailError) {
+            showError(emailInput, emailError);
+            isFormValid = false;
+        }
 
-function setSuccess(errorId) {
-    const errorElement = document.getElementById(errorId);
-    errorElement.textContent = "";
-    errorElement.style.display = "none";
-}
+        // تحقق من صحة كلمة المرور
+        const passwordError = validatePassword();
+        if (passwordError) {
+            showError(passwordInput, passwordError);
+            isFormValid = false;
+        }
 
+        // إذا كانت البيانات صحيحة، تحقق من تطابقها مع المسجلة
+        if (isFormValid) {
+            const checkResult = checkUserCredentials(emailInput.value.trim(), passwordInput.value);
+            if (!checkResult.isValid) {
+                showError(document.getElementById(checkResult.field), checkResult.message);
+                isFormValid = false;
+            }
+        }
 
-fields.forEach(field => {
-    const inputElement = document.getElementById(field.id);
-    inputElement.addEventListener('input', () => {
-        setSuccess(field.errorId);
+        // إذا كان كل شيء صحيحاً
+        if (isFormValid) {
+
+            window.location.href = "launch.html";
+        }
     });
 });

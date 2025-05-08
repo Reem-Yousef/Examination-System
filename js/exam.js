@@ -1,7 +1,4 @@
-
 document.addEventListener('DOMContentLoaded', async () => {
-    // عناصر DOM
-    // location.replace("exam.html");
     const questionTitle = document.getElementById('question-title');
     const questionText = document.getElementById('question-text');
     const answersContainer = document.getElementById('answers-container');
@@ -13,7 +10,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const questionNumbers = document.querySelectorAll('.question-number');
     const timerElement = document.querySelector('.timer');
 
-    // حالة التطبيق
     let originalQuestions = [];
     let questions = [];
     let currentQuestionIndex = 0;
@@ -22,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     let timeLeft = 120; // 2 دقيقة
     let timerInterval;
 
-    // دالة لخلط المصفوفة عشوائياً
     function shuffleArray(array) {
         const newArray = [...array];
         for (let i = newArray.length - 1; i > 0; i--) {
@@ -32,60 +27,39 @@ document.addEventListener('DOMContentLoaded', async () => {
         return newArray;
     }
 
-    // دالة لخلط الأسئلة والإجابات
     function shuffleExam() {
-        // 1. نسخ الأسئلة الأصلية
         questions = JSON.parse(JSON.stringify(originalQuestions));
-
-        // 2. خلط ترتيب الأسئلة
         questions = shuffleArray(questions);
-
-        // 3. إضافة معرف فريد لكل سؤال
         questions.forEach((q, index) => {
-            q.uniqueId = index; // معرف فريد لا يتغير
+            q.uniqueId = index;
         });
 
-        // 4. خلط الإجابات داخل كل سؤال
         questions.forEach(question => {
-            // حفظ الإجابة الصحيحة الأصلية
             const correctAnswerText = question.correctAnswer;
-
-            // تجميع الإجابات
             const answers = [
                 { text: question.answer1, isCorrect: question.answer1 === correctAnswerText },
                 { text: question.answer2, isCorrect: question.answer2 === correctAnswerText },
                 { text: question.answer3, isCorrect: question.answer3 === correctAnswerText },
                 { text: question.answer4, isCorrect: question.answer4 === correctAnswerText }
             ];
-
-            // خلط الإجابات
             const shuffledAnswers = shuffleArray(answers);
 
-            // تحديث الإجابات في السؤال
             question.answer1 = shuffledAnswers[0].text;
             question.answer2 = shuffledAnswers[1].text;
             question.answer3 = shuffledAnswers[2].text;
             question.answer4 = shuffledAnswers[3].text;
 
-            // تحديد الإجابة الصحيحة الجديدة
             question.correctAnswer = shuffledAnswers.find(a => a.isCorrect).text;
-
-            // حفظ المعلومات الأصلية
             question.originalCorrectAnswer = correctAnswerText;
             question.shuffledAnswers = shuffledAnswers.map(a => a.text);
         });
     }
 
-    // تحميل الأسئلة
     async function loadQuestions() {
         try {
             const response = await fetch('questions.json');
             originalQuestions = await response.json();
-
-            // خلط الأسئلة مباشرة عند كل تحميل
             shuffleExam();
-
-            // بدء المؤقت
             startTimer();
             loadQuestion(currentQuestionIndex);
         } catch (error) {
@@ -94,16 +68,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // تحميل سؤال معين
     function loadQuestion(index) {
         if (!questions.length) return;
 
         const question = questions[index];
-        questionTitle.textContent = `Question ${index + 1}`;
-        questionText.textContent = question.title;
+        questionTitle.textContent = `Question ${index + 1}`;  // تحديث العنوان
+        questionText.textContent = question.title;  // تحديث نص السؤال
         answersContainer.innerHTML = '';
 
-        // عرض الإجابات المخلوطة
         question.shuffledAnswers.forEach((answer, i) => {
             const answerDiv = document.createElement('div');
             answerDiv.className = 'answer-option';
@@ -132,14 +104,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateQuestionNumbers();
     }
 
-    // تحديث أزرار التنقل
     function updateNavigationButtons() {
         prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
         nextBtn.style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'block';
         submitBtn.style.display = currentQuestionIndex === questions.length - 1 ? 'block' : 'none';
     }
 
-    // تحديث أرقام الأسئلة
     function updateQuestionNumbers() {
         questionNumbers.forEach((num, i) => {
             num.classList.toggle('active', i === currentQuestionIndex);
@@ -148,7 +118,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // تحديث قائمة الأسئلة المميزة
     function updateMarkedList() {
         markedList.innerHTML = '';
 
@@ -168,7 +137,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // المؤقت
     function startTimer() {
         clearInterval(timerInterval);
         updateTimerDisplay();
@@ -194,11 +162,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // عند انتهاء الوقت
     function handleTimeOut() {
         clearInterval(timerInterval);
-
-        // إعادة الخلط الكامل
         shuffleExam();
         currentQuestionIndex = 0;
         userAnswers = new Map();
@@ -208,40 +173,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadQuestion(currentQuestionIndex);
         startTimer();
 
-        alert('انتهى الوقت! تم إعادة تحميل الأسئلة بترتيب جديد.');
+        localStorage.setItem('examResults', JSON.stringify({
+            score: 'Time Out',
+            details: []
+        }));
+
+        window.location.href = 'TimeIsOut.html'; // صفحة انتهاء الوقت
     }
 
-    // تسليم الاختبار
-
     function submitTest() {
-        // 1. البحث عن أول سؤال لم يتم الإجابة عليه
         const firstUnansweredIndex = questions.findIndex((_, index) => !userAnswers.has(index));
-
-        // 2. إذا وجد سؤال بدون إجابة
         if (firstUnansweredIndex !== -1) {
             currentQuestionIndex = firstUnansweredIndex;
             loadQuestion(currentQuestionIndex);
-
-            // إضافة تأثير مرئي للسؤال غير المجاب
             questionNumbers[currentQuestionIndex].classList.add('unanswered-highlight');
             setTimeout(() => {
                 questionNumbers[currentQuestionIndex].classList.remove('unanswered-highlight');
             }, 2000);
-
-            // عرض تنبيه للمستخدم
             alert(`يوجد أسئلة لم تتم الإجابة عليها. الرجاء الإجابة على السؤال رقم ${currentQuestionIndex + 1}`);
-            return; // لا تكمل التنفيذ
+            return;
         }
 
-        // 3. إذا كانت كل الإجابات مكتملة
         clearInterval(timerInterval);
 
-        // حساب النتائج
         let correctAnswers = 0;
         const results = questions.map((question, index) => {
             const isCorrect = userAnswers.get(index) === question.correctAnswer;
             if (isCorrect) correctAnswers++;
-
             return {
                 questionId: question.uniqueId,
                 questionText: question.title,
@@ -251,18 +209,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             };
         });
 
-        // 4. حفظ النتائج
+        const score = (correctAnswers / questions.length) * 100;
+
         localStorage.setItem('examResults', JSON.stringify({
-            score: `${correctAnswers}/${questions.length}`,
+            score: `${Math.round(score)}%`,
             details: results
         }));
 
-       
-        // 5. الانتقال لصفحة النتائج
-        // window.location.href = 'results.html';
+        // التوجيه للنتيجة
+        if (score >= 60) {
+            window.location.href = 'Success.html'; // صفحة النجاح
+        } else {
+            window.location.href = 'Failure.html'; // صفحة الفشل
+        }
     }
 
-    // أحداث الأزرار
     prevBtn.addEventListener('click', () => {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
@@ -290,7 +251,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     submitBtn.addEventListener('click', submitTest);
 
-    // الانتقال إلى سؤال عند النقر على رقمه
     questionNumbers.forEach((number, index) => {
         number.addEventListener('click', () => {
             currentQuestionIndex = index;
@@ -298,10 +258,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
-    // بدء التطبيق
     loadQuestions();
-
 });
+
 
 
 
@@ -608,4 +567,3 @@ document.addEventListener('DOMContentLoaded', async () => {
 //     // بدء التطبيق
 //     loadQuestions();
 // });
-   

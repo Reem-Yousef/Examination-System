@@ -93,6 +93,7 @@ h2 {
 
 .regbtn {
   width: 100%;
+  padding: 1px;
 }
 
 .regbtn button {
@@ -102,6 +103,10 @@ h2 {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+.regbtn p {
+  margin-top: 20px;
+  text-align: center;
 }
 
 .error {
