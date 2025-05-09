@@ -30,6 +30,7 @@
 }
 
 /* Header */
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
@@ -100,8 +101,21 @@
     background: var(--hot-pink);
     color: white;
     box-shadow: 0 0 15px var(--hot-pink);
+    background: var(--hot-pink);
+    color: white;
+    box-shadow: 0 0 15px var(--hot-pink);
 }
 
+.question-number.answered {
+    background: rgba(255, 54, 163, 0.5);
+}
+
+.question-number.marked {
+    border: 2px solid var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+/* Main Section */
 .question-number.answered {
     background: rgba(255, 54, 163, 0.5);
 }
@@ -133,6 +147,7 @@
     gap: 20px;
 }
 
+/* Question Container */
 /* Question Container */
 .question-container {
     background: rgba(0, 0, 0, 0.4);
@@ -170,6 +185,14 @@
 }
 
 .answer-option {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 54, 163, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 54, 163, 0.2);
     border-radius: 12px;
@@ -302,6 +325,38 @@
 
 .actions button:active {
     transform: scale(0.95);
+.actions button {
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.actions button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.actions button:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translate(10%, 10%);
+}
+
+.actions button:active {
+    transform: scale(0.95);
 }
 
 .nav-btn {
@@ -314,9 +369,27 @@
 .nav-btn:hover {
     background: rgba(255, 54, 163, 0.2);
     box-shadow: 0 0 15px rgba(255, 54, 163, 0.4);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid var(--hot-pink);
+    box-shadow: 0 0 10px rgba(255, 54, 163, 0.2);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 54, 163, 0.2);
+    box-shadow: 0 0 15px rgba(255, 54, 163, 0.4);
 }
 
 .mark-btn {
+    background: rgba(181, 51, 138, 0.6);
+    color: white;
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+}
+
+.mark-btn:hover {
+    background: rgba(255, 0, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
     background: rgba(181, 51, 138, 0.6);
     color: white;
     border: 1px solid var(--neon-pink);
