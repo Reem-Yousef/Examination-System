@@ -325,6 +325,8 @@
 
 .actions button:active {
     transform: scale(0.95);
+}
+
 .actions button {
     padding: 12px 25px;
     border-radius: 30px;
