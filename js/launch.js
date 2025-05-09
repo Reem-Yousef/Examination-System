@@ -1,4 +1,3 @@
-// rocket launch
 const rocketContainer = document.querySelector('.rocket-container');
 const exhaust = document.querySelector('.exhaust-flame');
 const countdown = document.querySelector('.countdown');
@@ -40,11 +39,10 @@ function launchRocket() {
         setTimeout(() => {
             startButton.style.opacity = '1';
             startButton.style.transform = 'translateY(0)';
-        }, 2000); // Adjusted timing to match total delay
+        }, 2000); 
     }, 500);
 }
 
-// start exam button
 const startButton = document.querySelector('.start-button');
 const gidePopup= document.querySelector('.Quiz-gide');
 const main= document.querySelector('.main');

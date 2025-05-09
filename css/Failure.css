@@ -1,260 +1,124 @@
+/* Cosmic Styles */
+:root {
+  --hot-pink: #ff36a3;
+  --failure-black: #2a0a1a;
+  --dark-pink: #cc0066;
+  --cosmic-black: #0a0a15;
+  --light-pink: #ff9eda;
+}
+
+/* Failure State */
 .failure .result-icon {
   background: radial-gradient(circle at 30% 30%, var(--failure-black), black);
   box-shadow: 0 0 25px var(--failure-black);
   border: 2px solid var(--hot-pink);
 }
 
-.failure .result-title {
-  color: var(--light-pink);
-}
+.failure .result-title { color: var(--light-pink); }
 
 .btn-failure {
   background: linear-gradient(45deg, var(--dark-pink), var(--cosmic-black));
   box-shadow: 0 0 15px rgba(181, 51, 138, 0.5);
 }
 
-/* Black hole effect for failure
-  .black-hole {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: radial-gradient(circle at center, black 40%, var(--dark-pink));
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--neon-pink);
-    animation: rotate 10s linear infinite;
-}
-
-.swirl {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-top-color: var(--hot-pink);
-    animation: rotate 1.5s linear infinite;
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-} */
-
-/* Black hole container */
+/* Black Hole Core */
 .black-hole {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at center,
-    black 40%,
-    rgba(255, 0, 150, 0.1)
-  );
-  box-shadow: 0 0 40px rgba(255, 0, 150, 0.5);
+  background: radial-gradient(circle at center, black 40%, rgba(255,0,150,0.1));
+  box-shadow: 0 0 40px rgba(255,0,150,0.5);
   animation: blackholePulse 3s ease-in-out infinite;
-  z-index: 10;
 }
 
-/* Central spinning swirl */
+/* Spinning Elements */
 .swirl {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   border: 3px solid transparent;
   border-top: 3px solid var(--hot-pink);
-  animation: rotate 1s linear infinite;
+  border-radius: 50%;
+  animation: rotate 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   filter: blur(1px);
 }
 
-/* Outer gravitational light ring */
 .light-ring {
   position: absolute;
-  top: -15px;
-  left: -15px;
-  width: 110px;
-  height: 110px;
+  top: -10px;
+  left: -10px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: radial-gradient(circle, transparent 50%, rgba(255, 0, 150, 0.2));
-  box-shadow: 0 0 20px rgba(255, 0, 150, 0.3);
-  animation: ringSpin 6s linear infinite;
-  z-index: 1;
+  background: radial-gradient(circle, transparent 50%, rgba(255,0,150,0.2));
+  box-shadow: 0 0 15px rgba(255,0,150,0.3);
+  animation: ringSpin 8s linear infinite;
 }
 
-/* Horizon glow */
+/* Central Elements */
 .event-horizon {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 50px;
-  height: 50px;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
   background: black;
   border-radius: 50%;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-  z-index: 5;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
-/* Animations */
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes ringSpin {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.05);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-@keyframes blackholePulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* .img-container{
-    position: absolute;
-    left: 85%;
-    top: 1%;
-} */
-/* 
-.img-container img{
-    width: 100px;
-    height: 100px;
-    z-index: 20;
-} */
-/* 
-@keyframes orbitAndSuckIn {
-    0% {
-        transform: rotate(0deg) translateX(150px) rotate(0deg);
-        opacity: 1;
-        scale: 1;
-    }
-    60% {
-        transform: rotate(300deg) translateX(150px) rotate(-300deg);
-        opacity: 1;
-        scale: 1;
-    }
-    80% {
-        transform: translate(0, 0) scale(0.5);
-        opacity: 0.7;
-    }
-    100% {
-        transform: translate(0, 0) scale(0);
-        opacity: 0;
-    }
-}
-
-.img-container img {
-    width: 100px;
-    height: 100px;
-    z-index: 20;
-    animation: orbitAndSuckIn 5s ease-in-out forwards;
-    transform-origin: center center;
-} */
-
-/* Animation for spinning around itself */
-/* @keyframes selfSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-} */
-
-/* Combined orbit then fall into black hole */
-/* @keyframes orbitAndSuckIn {
-    0% {
-        transform: rotate(0deg) translateX(150px) rotate(0deg) scale(1);
-        opacity: 1;
-    }
-    60% {
-        transform: rotate(360deg) translateX(150px) rotate(-360deg) scale(1);
-        opacity: 1;
-    }
-    80% {
-        transform: translate(0, 0) scale(0.5);
-        opacity: 0.7;
-    }
-    100% {
-        transform: translate(0, 0) scale(0);
-        opacity: 0;
-    }
-}
-
-.img-container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    animation: orbitAndSuckIn 5s ease-in-out forwards;
-    transform-origin: center center;
-}
-
-.img-container img {
-    width: 100px;
-    height: 100px;
-    z-index: 20;
-    animation: selfSpin 0.4s linear infinite;
-} */
-
-@keyframes orbitAndPauseThenFall {
-  0% {
-    transform: rotate(0deg) translateX(150px) rotate(0deg) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: rotate(360deg) translateX(150px) rotate(-360deg) scale(1);
-    opacity: 1;
-  }
-  65% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  75% {
-    transform: translate(0, 0) scale(0.6);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(0, 0) scale(0);
-    opacity: 0;
-  }
-}
-
-@keyframes selfSpinSlow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
+/* Image Animation */
 .img-container {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  animation: orbitAndPauseThenFall 6s ease-in-out forwards;
-  transform-origin: center center;
+  animation: cosmicOrbit 6s ease-in-out forwards;
   z-index: 15;
 }
 
 .img-container img {
-  width: 100px;
-  height: 100px;
-  animation: selfSpinSlow 3s linear infinite;
+  width: 70px;
+  height: 70px;
+  animation: gentleSpin 4s linear infinite;
+}
+
+/* Optimized Animations */
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ringSpin {
+  50% { transform: rotate(180deg) scale(1.05); }
+  to { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes blackholePulse {
+  50% { transform: scale(1.1); }
+}
+
+@keyframes cosmicOrbit {
+  0% { 
+    transform: rotate(0deg) translateX(120px) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: rotate(360deg) translateX(120px) rotate(-360deg) scale(1);
+    opacity: 1;
+  }
+  75% { transform: translate(-50%, -50%) scale(0.8); }
+  to { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+@keyframes gentleSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .black-hole { width: 50px; height: 50px; }
+  .light-ring { width: 70px; height: 70px; }
+  .event-horizon { width: 30px; height: 30px; }
+  .img-container img { width: 50px; height: 50px; }
 }

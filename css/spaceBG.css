@@ -34,6 +34,17 @@ body {
   overflow: hidden;
   height: 100vh;
   position: relative;
+  background-size: cover;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* sky container */
@@ -100,7 +111,7 @@ body {
   transform: rotate(45deg);
   /* pointer-events: none; */
   animation: meteorMove 1s linear forwards;
-  /* z-index: 4; */
+  z-index: 2;
 }
 
 @keyframes meteorMove {

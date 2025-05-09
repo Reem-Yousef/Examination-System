@@ -4,7 +4,8 @@
 }
 
 .success .result-title {
-    color: var(--hot-pink);
+    color: var(--light-pink);
+    padding: 10px 0;
 }
 
 .btn-success {

@@ -155,23 +155,13 @@
   font-size: 1.2rem;
   opacity: 0;
   transition: opacity 1s ease, transform 1s ease;
-  z-index: 1000;
+  z-index: 100;
 }
+
 .ufo-welcome.visible {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1.05);
 }
-/* .ufo-welcome.float {
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1.05) translateY(0px);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.05) translateY(-10px);
-  }
-} */
 
 .welcome-content{
   text-align: center;
@@ -179,8 +169,6 @@
 
 .welcome-content h1 {
   font-size: 2rem;
-  /* text-align: center; */
-  /* margin-bottom: 1rem; */
   color: rgb(245, 243, 244);
   text-shadow: 0 0 10px rgba(245, 244, 245, 0.7);
 }
@@ -207,34 +195,46 @@
 }
 
 .welcome-button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0px 10px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    color: white;
 }
+
+.welcome-button::after{
+  content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.welcome-button:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translate(10%, 10%);
+}
+
+.welcome-button:active {
+    transform: scale(0.95);
+}
+
 
 .welcome-button.primary {
   background: linear-gradient(135deg, var(--cosmic-blue), var(--rocket-red));
   box-shadow: 0 4px 15px var(--button-glow);
-}
-
-.welcome-button.primary a{
-  text-decoration: none;
-  color: white;
-
-}
-
-.welcome-button.secondary {
-  background: transparent;
-  border: 2px solid var(--rocket-red);
-  color: var(--rocket-red);
-}
-
-.welcome-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px var(--planet-glow);
 }
 
 .ufo-welcome.visible .beam-overlay {

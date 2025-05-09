@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-// stars apply
 
 const starsContainer = document.querySelector('.stars');
 
-Array.from({ length: 500 }).forEach(() => {
+Array.from({ length: 400 }).forEach(() => {
     const star = document.createElement('div');
     star.classList.add('star');
 
-    // Randomly assign white or pink stars
     if (Math.random() > 0.3) {
         star.classList.add('star-white');
     } else {
@@ -27,15 +25,17 @@ Array.from({ length: 500 }).forEach(() => {
     starsContainer.appendChild(star);
 });
 
-//create meteors
 
 const createMeteor = () => {
-    const meteor = document.createElement('div');
-    meteor.classList.add('meteor');
+    const template = document.querySelector('.meteor');
 
-    const left = Math.random() * window.innerWidth * 0.7; 
+    const meteor = template.cloneNode(true);
+    meteor.style.display = 'block';
+
+    const left = Math.random() * window.innerWidth * 0.7;
     const top = Math.random() * window.innerHeight * 0.4;
 
+    meteor.style.position = 'absolute';
     meteor.style.left = `${left}px`;
     meteor.style.top = `${top}px`;
 
@@ -44,8 +44,9 @@ const createMeteor = () => {
     setTimeout(() => meteor.remove(), 1000);
 };
 
-    setInterval(() => {
-        if (Math.random() < 0.8) createMeteor();
-    }, 2500);
+setInterval(() => {
+    if (Math.random() < 0.8) createMeteor();
+}, 2000);
+
 
 });

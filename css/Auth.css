@@ -1,0 +1,217 @@
+/* ----------------------- [ General Styles Shared ] ----------------------- */
+.container {
+  position: relative;
+  z-index: 15;
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 54, 163, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  width: 30%;
+  max-width: 600px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 30px rgba(255, 54, 163, 0.25);
+  transition: all 0.6s ease;
+  margin: 5% auto;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 0 20px;
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px rgba(255, 54, 163, 0.4);
+}
+
+#form {
+  width: 100%;
+}
+
+.input-form {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.input-form input,
+.passcontainer input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid rgba(255, 54, 163, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.input-form input:focus,
+.passcontainer input:focus {
+  border-color: rgba(255, 54, 163, 0.6);
+  box-shadow: 0 0 8px rgba(255, 54, 163, 0.3);
+}
+
+.passcontainer {
+  position: relative;
+}
+
+.passcontainer img {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.regbtn {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.regbtn button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: rgba(255, 54, 163, 0.3);
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.regbtn button:hover {
+  background: rgba(255, 54, 163, 0.5);
+}
+
+.regbtn p {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.error {
+  display: none;
+  color: #ff4444;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.input-form input.invalid,
+.passcontainer input.invalid {
+  border-color: #ff4444;
+  box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.3);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+form.submitting {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+form.submitting button {
+  background: #4CAF50 !important;
+}
+
+/* ----------------------- [ Login Specific Styles ] ----------------------- */
+.login-page .container {
+  border-color: rgba(54, 162, 255, 0.3);
+  box-shadow: 0 0 30px rgba(54, 162, 255, 0.25);
+}
+
+.login-page h2 {
+  text-shadow: 0 0 10px rgba(54, 162, 255, 0.4);
+}
+
+.login-page .regbtn button:hover {
+  background: rgba(54, 162, 255, 0.5);
+}
+
+/* ----------------------- [ Signup Specific Styles ] ----------------------- */
+.signup-page .container {
+  border-color: rgba(255, 54, 163, 0.3);
+  box-shadow: 0 0 30px rgba(255, 54, 163, 0.25);
+}
+
+.signup-page h2 {
+  text-shadow: 0 0 10px rgba(255, 54, 163, 0.4);
+}
+
+.signup-page .regbtn button:hover {
+  background: rgba(255, 54, 163, 0.5);
+}
+
+/* ----------------------- [ Responsive Styles ] ----------------------- */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+    border-radius: 12px;
+    width: 95%;
+    margin-top: 10%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .input-form input,
+  .passcontainer input {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .regbtn button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .container {
+    max-width: 450px;
+    padding: 25px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 500px;
+    padding: 40px;
+  }
+
+  .input-form input,
+  .passcontainer input {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .regbtn button {
+    padding: 18px;
+    font-size: 18px;
+  }
+}
