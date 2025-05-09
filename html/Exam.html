@@ -34,21 +34,53 @@
             </div>
           </div>
 
-          <div class="right-section">
+          <!-- <div class="right-section">
             <div class="marked-section">
               <h3>Marked Questions</h3>
               <ul id="markedList"></ul>
             </div>
           </div>
-        </div>
 
-        <div class="actions">
-          <button id="prevBtn" class="nav-btn">Previous</button>
-          <button id="markBtn" class="mark-btn">Mark</button>
-          <button id="nextBtn" class="nav-btn">Next</button>
-          <button id="submitBtn" class="submit-btn">Submit</button>
-        </div>
-      </div>
+          <div class="unanswered-section">
+          <ul id="unansweredList"></ul>
+          </div>
+
+        </div> -->
+
+        <!-- Right Section -->
+<div class="right-section">
+  <div class="list-toggle-buttons">
+    <button id="showMarkedBtn">Marked Questions</button>
+    <button id="showUnansweredBtn">Unanswered Questions</button>
+  </div>
+</div>
+
+<!-- Popup: Marked Questions -->
+<div id="markedPopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup('markedPopup')">&times;</span>
+    <h3>Marked Questions</h3>
+    <ul id="markedList"></ul>
+  </div>
+</div>
+
+<!-- Popup: Unanswered Questions -->
+<div id="unansweredPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <h3>Unanswered Questions</h3>
+        <ul id="unansweredList"></ul>
+    </div>
+</div>
+
+
+</div>
+<div class="actions">
+  <button id="prevBtn" class="nav-btn">Previous</button>
+  <button id="markBtn" class="mark-btn">Mark</button>
+  <button id="nextBtn" class="nav-btn">Next</button>
+  <button id="submitBtn" class="submit-btn">Submit</button>
+</div>
     </section>
 
     <script src="../js/exam.js"></script>
