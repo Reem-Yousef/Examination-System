@@ -123,6 +123,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 { text: q.answer2, isCorrect: q.answer2 === correctAnswerText },
                 { text: q.answer3, isCorrect: q.answer3 === correctAnswerText },
                 { text: q.answer4, isCorrect: q.answer4 === correctAnswerText }
+                { text: q.answer1, isCorrect: q.answer1 === correctAnswerText },
+                { text: q.answer2, isCorrect: q.answer2 === correctAnswerText },
+                { text: q.answer3, isCorrect: q.answer3 === correctAnswerText },
+                { text: q.answer4, isCorrect: q.answer4 === correctAnswerText }
             ];
             
             shuffle(answers);
@@ -142,11 +146,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch('questions.json');
             state.originalQuestions = await response.json();
             prepareExam();
+            state.originalQuestions = await response.json();
+            prepareExam();
             startTimer();
+            loadQuestion(state.currentQuestionIndex);
+            updateUI();
             loadQuestion(state.currentQuestionIndex);
             updateUI();
         } catch (error) {
             console.error('Error loading questions:', error);
+            elements.questionText.textContent = 'Error loading questions. Please try again later.';
             elements.questionText.textContent = 'Error loading questions. Please try again later.';
         }
     };
@@ -187,9 +196,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 updateUI();
             });
 
-            const label = document.createElement('label');
-            label.htmlFor = `answer${i}`;
-            label.textContent = answer;
+        const label = document.createElement('label');
+        label.htmlFor = `answer${i}`;
+        label.textContent = answer;
 
             answerDiv.appendChild(input);
             answerDiv.appendChild(label);
@@ -398,6 +407,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             details: []
         }));
 
+
         window.location.href = 'TimeIsOut.html';
     };
 
@@ -420,9 +430,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const results = state.questions.map((question, index) => {
             const isCorrect = state.userAnswers.get(index) === question.correctAnswer;
+        
+        const results = state.questions.map((question, index) => {
+            const isCorrect = state.userAnswers.get(index) === question.correctAnswer;
             if (isCorrect) correctAnswers++;
             return { isCorrect };
+            return { isCorrect };
         });
+
+        const score = Math.round((correctAnswers / state.questions.length) * 100);
+
 
         const score = Math.round((correctAnswers / state.questions.length) * 100);
 
@@ -431,8 +448,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             totalQuestions: state.questions.length,
             timeSpent,
             score,
+            correctAnswers,
+            totalQuestions: state.questions.length,
+            timeSpent,
+            score,
             details: results
         }));
+
 
         window.location.href = score >= 60 ? 'Success.html' : 'Failure.html';
     };

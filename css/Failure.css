@@ -12,11 +12,16 @@
   background: radial-gradient(circle at 30% 30%, var(--failure-black), black);
   box-shadow: 0 0 25px var(--failure-black);
   border: 2px solid var(--hot-pink);
+  background: radial-gradient(circle at 30% 30%, var(--failure-black), black);
+  box-shadow: 0 0 25px var(--failure-black);
+  border: 2px solid var(--hot-pink);
 }
 
 .failure .result-title { color: var(--light-pink); }
 
 .btn-failure {
+  background: linear-gradient(45deg, var(--dark-pink), var(--cosmic-black));
+  box-shadow: 0 0 15px rgba(181, 51, 138, 0.5);
   background: linear-gradient(45deg, var(--dark-pink), var(--cosmic-black));
   box-shadow: 0 0 15px rgba(181, 51, 138, 0.5);
 }
