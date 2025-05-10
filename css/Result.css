@@ -6,13 +6,12 @@
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 54, 163, 0.3);
     border-radius: 20px;
-    padding: 40px;
+    padding: 30px;
     width: 90%;
+    height: 90vh;
     max-width: 600px;
     text-align: center;
     box-shadow: 0 0 30px rgba(255, 54, 163, 0.2);
-    transform-style: preserve-3d;
-    transform: perspective(1000px) rotateX(0deg);
     transition: all 0.6s ease;
 }
 
@@ -58,12 +57,12 @@
 
 .button {
     padding: 14px 32px;
-    border-radius: 30px;
+    border-radius: 10px;
     border: none;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    margin: 10px;
+    margin: 0px 10px;
     transition: all 0.3s ease;
     letter-spacing: 1px;
     position: relative;
@@ -128,4 +127,62 @@
         padding: 12px 24px;
         font-size: 14px;
     }
+}
+
+
+.result-info{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.true-answers{
+    width: 150px;
+    height: 60px;
+    padding: 10px;
+    border: 2px solid rgba(255, 54, 163, 0.2);
+    border-radius: 20px;
+    margin-right: 20px;
+    box-shadow: 1px 1px 8px rgb(192, 71, 128);
+}
+
+.welcome-button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0px 10px;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.welcome-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.welcome-button:hover::after {
+  opacity: 1;
+  transform: rotate(45deg) translate(10%, 10%);
+}
+
+.welcome-button:active {
+  transform: scale(0.95);
+}
+
+.welcome-button.primary {
+  background: linear-gradient(135deg, var(--cosmic-blue), var(--rocket-red));
+  box-shadow: 0 4px 15px var(--button-glow);
 }

@@ -133,53 +133,54 @@
     z-index: 20;
 }
 
-/* Beam */
-/* .beam {
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) scaleY(0);
-    background: linear-gradient(to bottom, rgba(132,165,167,0.4), rgba(255,255,255,0));
-    border-radius: 50% 50% 0 0;
-    opacity: 0;
-    z-index: 5;
-    transform-origin: top;
-    transition: transform 2s ease, opacity 2s ease;
-}
-
-@keyframes beamFlicker {
-    0%, 100% { opacity: 1; filter: blur(0px); }
-    25% { opacity: 0.8; filter: blur(1px); }
-    50% { opacity: 1; filter: blur(0px); }
-    75% { opacity: 0.6; filter: blur(2px); }
-} */
-
 /* Start button */
 .start-button {
-    position: absolute;
-    padding: 15px 30px;
-    font-size: 22px;
-    background: rgba(24, 28, 36, 0.3);
-    color: white;
-    border: 2px solid var(--button-glow);
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 2px;
-    box-shadow: 0 0 15px var(--button-glow);
-    transition: all 0.5s ease;
-    opacity: 0;
-    z-index: 15;
-    text-transform: uppercase;
+  position: absolute;
+  padding: 15px 30px;
+  font-size: 22px;
+  background: linear-gradient(135deg, var(--cosmic-blue), var(--rocket-red));
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+  box-shadow: 0 0 15px var(--button-glow);
+  transition: all 0.5s ease;
+  opacity: 0;
+  z-index: 15;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+}
+
+.start-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.start-button:hover::after {
+  opacity: 1;
+  transform: rotate(45deg) translate(10%, 10%);
 }
 
 .start-button:hover {
-    box-shadow: 0 0 25px var(--button-glow);
-    background: rgba(34, 14, 18, 0.425);
-    transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--button-glow);
+  transform: translateY(-5px);
 }
+
+.start-button:active {
+  transform: scale(0.95);
+}
+
 
 .Quiz-gide{
     position: absolute;

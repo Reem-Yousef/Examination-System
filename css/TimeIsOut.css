@@ -1,6 +1,7 @@
 .timeout .result-icon {
     background: radial-gradient(circle at 30% 30%, var(--timeout-gray), var(--cosmic-black));
     box-shadow: 0 0 25px var(--timeout-gray);
+    margin: 10px auto;
 }
 
 .timeout .result-icon span img{
@@ -11,21 +12,18 @@
 
 }
 
-/* @keyframes Shake {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(10deg); }
-    50% { transform: rotate(-10deg); }
-    75% { transform: rotate(10deg); }
-    100% { transform: rotate(0deg); }
-} */
+.result-container{
+    height: 80vh;
+}
 
-.timeout .result-title {
-    /* color: var(--timeout-gray); */
+.result-title{
+    margin-top: 15px;
 }
 
 .btn-timeout {
-    background: linear-gradient(45deg, var(--timeout-gray), var(--cosmic-black));
-    box-shadow: 0 0 15px rgba(85, 85, 85, 0.5);
+    background: linear-gradient(45deg, var(--hot-pink), var(--dark-pink));
+    box-shadow: 0 0 15px rgba(255, 54, 163, 0.5);
+    margin-top: 20px;
 }
 
  /* Timer animation for timeout page */

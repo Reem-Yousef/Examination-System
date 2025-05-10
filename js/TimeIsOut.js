@@ -9,8 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
         answeredElement.textContent = answered;
         totalElement.textContent = total;
     }
-    
-    // تنظيف localStorage إذا لزم الأمر
-    // localStorage.removeItem('answered');
-    // localStorage.removeItem('total');
+
 });
